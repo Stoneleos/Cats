@@ -17,6 +17,18 @@ def load_image(url):
         return None
 
 
+def open_new_window():
+    img = load_image(url)
+
+    if img:
+        new_window=Toplevel()
+        new_window.title("Вот вам котик")
+        new_window.geometry("600x600")
+        label = Label(new_window, image=img)
+        label.pack()
+        label.image = img
+
+
 def set_image():
     img = load_image(url)
     if img:
@@ -40,7 +52,7 @@ window.config(menu=menu_bar)
 
 file_menu = Menu(menu_bar, tearoff=0)
 menu_bar.add_cascade(label="Файл", menu=file_menu)
-file_menu.add_command(label="Обновить изображение", command=set_image)
+file_menu.add_command(label="Обновить изображение", command=open_new_window)
 file_menu.add_separator()
 file_menu.add_command(label="Выход", command=exit)
 
