@@ -10,6 +10,7 @@ def load_image(url):
         response.raise_for_status()
         image_data = BytesIO(response.content)
         img = Image.open(image_data)
+        img.thumbnail((500, 500), Image.Resampling.LANCZOS)
         return ImageTk.PhotoImage(img)
     except Exception as e:
         print(f"Error happened: {e}")
@@ -25,7 +26,7 @@ def set_image():
 
 window = Tk()
 window.title("Cataas")
-window.geometry("600x480")
+window.geometry("600x600")
 
 update_button = Button(window, text="Обновить", command=set_image)
 update_button.pack()
